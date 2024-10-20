@@ -1,7 +1,17 @@
 def binary_search(keys, query):
-    # write your code here
-    pass
-
+    left, right = 0, len(keys) - 1
+    
+    while left <= right:
+        mid = left + (right - left) // 2
+        
+        if keys[mid] == query:
+            return mid
+        elif keys[mid] < query:
+            left = mid + 1
+        else:
+            right = mid - 1
+            
+    return -1
 
 if __name__ == '__main__':
     num_keys = int(input())

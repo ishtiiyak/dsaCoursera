@@ -1,9 +1,20 @@
 from random import randint
 
-
 def partition3(array, left, right):
-    # write your code here
+    pivot = array[left]
+    m1 = left  # Start of the "equal" section
+    m2 = left  # End of the "equal" section
 
+    for i in range(left, right + 1):
+        if array[i] < pivot:
+            array[m1], array[i] = array[i], array[m1]
+            m1 += 1
+            m2 += 1
+        elif array[i] == pivot:
+            array[m2], array[i] = array[i], array[m2]
+            m2 += 1
+
+    return m1, m2 - 1
 
 def randomized_quick_sort(array, left, right):
     if left >= right:
@@ -13,7 +24,6 @@ def randomized_quick_sort(array, left, right):
     m1, m2 = partition3(array, left, right)
     randomized_quick_sort(array, left, m1 - 1)
     randomized_quick_sort(array, m2 + 1, right)
-
 
 if __name__ == '__main__':
     input_n = int(input())
